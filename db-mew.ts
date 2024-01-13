@@ -1,4 +1,6 @@
-const pokemon = {
+import { Pokemon } from "./type"
+
+const pokemon: Pokemon<"mew", "psychic"> = {
   name: "mew",
   types: ["psychic"],
   moves: [
