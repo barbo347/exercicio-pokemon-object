@@ -1,23 +1,26 @@
-
-const printPokemon = pkm => {
-  console.log(`  Nome: Pikachu - Tipo: Eletrico
-  Habilidade: Static
+const printPokemon = (pkm: any) => {
+  console.log(`  Nome: ${pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)} - Tipo: ${pkm.types[0].charAt(0).toUpperCase() + pkm.types[0].slice(1)}
+  Habilidade: ${pkm.ability.charAt(0).toUpperCase() + pkm.ability.slice(1)}
 
   Linha de evolução:
-    Pichu >> PIKACHU >> Raichu
+    ${pkm.preEvolution.charAt(0).toUpperCase() + pkm.preEvolution.slice(1)} >> ${pkm.name.toUpperCase()} >> ${pkm.evolution.charAt(0).toUpperCase() + pkm.evolution.slice(1)}
 
   Atributos:
 
-    HP: 100
-    ATK: 55 SpATK: 100
-    DEF: 34 SpDEF: 30
-    SPEED: 150
+    HP: ${pkm.attributes.hp}
+    ATK: ${pkm.attributes.attack} SpATK: ${pkm.attributes.specialAttack}
+    DEF: ${pkm.attributes.defense} SpDEF: ${pkm.attributes.specialDefense} 
+    SPEED: ${pkm.attributes.speed}
 
-  Ataques:
-    Lv 5 - Tackle
-    Lv 9 - Thunder Wave
-    Lv 20 - Thunderbolt
-    Lv 50 - Thunder`)
-}
+  Ataques:  
+  `);
+  pkm.moves
+    .sort((a: any, b: any) => a.lv - b.lv)
+    .forEach((move: any) => {
+      console.log(
+        `    Lv ${move.lv} - ${move.name.charAt(0).toUpperCase() + move.name.slice(1)}`,
+      );
+    });
+};
 
-module.exports = { printPokemon }
+export { printPokemon };
